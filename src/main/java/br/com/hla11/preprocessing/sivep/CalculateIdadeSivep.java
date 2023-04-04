@@ -11,7 +11,7 @@ import br.com.hla11.csv.model.CsvBean;
 import br.com.hla11.csv.model.SivepCsvBean;
 import br.com.hla11.util.DateUtil;
 
-public class CalculateIdade {
+public class CalculateIdadeSivep {
 	
 	public static void main(String[] args) throws Exception {
 		List<CsvBean> sivepList = readCsv();
