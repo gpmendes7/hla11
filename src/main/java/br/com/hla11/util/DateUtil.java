@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 
 public class DateUtil {
-	
+		
 	public static Date addDays(final Date date, int days) {
 	    Date newDate = new Date(date.getTime());
 
@@ -32,6 +32,23 @@ public class DateUtil {
 	public static long countDaysBetween(final Date startDate, final Date endDate) {
 		long diffInMillies = Math.abs(endDate.getTime() - startDate.getTime());
 	    long diff = TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS);
+	    return diff;
+	}
+	
+	public static int countYearsBetween(final Date startDate, final Date endDate) {
+		Calendar a = new GregorianCalendar();
+	    a.setTime(startDate);
+	    
+	    Calendar b = new GregorianCalendar();
+	    b.setTime(endDate);
+				
+	    int diff = b.get(Calendar.YEAR) - a.get(Calendar.YEAR);
+	    
+	    if (a.get(Calendar.MONTH) > b.get(Calendar.MONTH) || 
+	        (a.get(Calendar.MONTH) == b.get(Calendar.MONTH) && a.get(Calendar.DATE) > b.get(Calendar.DATE))) {
+	        diff--;
+	    }
+	    
 	    return diff;
 	}
 	
