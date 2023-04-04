@@ -14,6 +14,10 @@ public class StringUtil {
 				     .trim();
 	}
 	
+	public static boolean isEmptyOrNull(String string) {
+		return string == null || string.equals("");
+	}
+	
 	public static String normalize(String string) {
 		String normalizedString = removeSpecialCharacters(string);
 		normalizedString = deleteWhiteSpace(normalizedString);

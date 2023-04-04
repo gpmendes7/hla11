@@ -10,34 +10,42 @@ import br.com.hla11.csv.model.CsvBean;
 import br.com.hla11.csv.model.SivepCsvBean;
 import br.com.hla11.util.StringUtil;
 
-public class NormalizeStringsSivep {
+public class FillEtniaRedomeSivep {
 	
 	public static void main(String[] args) throws Exception {
 		List<CsvBean> sivepList = readCsv();
 		
 		for (CsvBean csvBean : sivepList) {
 			SivepCsvBean sivepBean = (SivepCsvBean) csvBean;
-			sivepBean.setNome(StringUtil.normalize(sivepBean.getNome()));
-			sivepBean.setSexoRedome(StringUtil.normalize(sivepBean.getSexoRedome()));
-			sivepBean.setEtniaSivep(StringUtil.normalize(sivepBean.getEtniaSivep()));
-			sivepBean.setEtniaRedome(StringUtil.normalize(sivepBean.getEtniaRedome()));
-			sivepBean.setEtniaSivepRedome(StringUtil.normalize(sivepBean.getEtniaSivepRedome()));
-			sivepBean.setNomeMae(StringUtil.normalize(sivepBean.getNomeMae()));
-			sivepBean.setMunicipio(StringUtil.normalize(sivepBean.getMunicipio()));
-			sivepBean.setEvolucaoCaso(StringUtil.normalize(sivepBean.getEvolucaoCaso()));
+			fillEtniaRedomeSivep(sivepBean);
 		}
 		
 		writeCsv(sivepList);
 	}
 	
+	private static void fillEtniaRedomeSivep(SivepCsvBean sivepBean) {
+		String etniaSivepRedome = sivepBean.getEtniaRedome();
+		String etniaSivep = sivepBean.getEtniaSivep();
+		
+		if(etniaSivepRedome.equals("NAO INFORMADO")) {
+			if(!StringUtil.isEmptyOrNull(etniaSivep) 
+			   && !etniaSivep.equals("IGNORADO")) {
+				sivepBean.setEtniaSivepRedome(etniaSivep);
+				return;
+			}
+		}
+		
+		sivepBean.setEtniaSivepRedome(etniaSivepRedome);	
+	}
+	
 	private static List<CsvBean> readCsv() throws Exception {
-		Path path = Paths.get(CsvConstants.SIVEP);
+		Path path = Paths.get(CsvConstants.SIVEP_WITH_ETNIA_SIVEP_NORMALIZED);
 		return CsvBeanHandler.readCsv(path, SivepCsvBean.class);
 	}
 	
 	private static void writeCsv(List<CsvBean> csvList) throws Exception {
-	    Path path = Paths.get(CsvConstants.SIVEP_WITH_STRINGS_NORMALIZED);
+	    Path path = Paths.get(CsvConstants.SIVEP_WITH_ETNIA_SIVEP_REDOME);
 	    CsvBeanHandler.writeCsv(path, csvList, SivepCsvBean.class);    
 	}
-
+	
 }
