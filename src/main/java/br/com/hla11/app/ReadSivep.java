@@ -9,7 +9,7 @@ import br.com.hla11.csv.handler.CsvBeanHandler;
 import br.com.hla11.csv.model.CsvBean;
 import br.com.hla11.csv.model.SivepCsvBean;
 
-public class ReadSivepCsvBean {
+public class ReadSivep {
 
 	public static void main(String[] args) throws Exception {
 		List<CsvBean> sivepList = readCsv();

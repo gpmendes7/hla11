@@ -13,7 +13,7 @@ import br.com.hla11.csv.handler.CsvBeanHandler;
 import br.com.hla11.csv.model.CsvBean;
 import br.com.hla11.csv.model.SivepCsvBean;
 
-public class WriteSivepCsvBean {
+public class WriteSivep {
 	
 	public static void main(String[] args) throws Exception {
 		SivepCsvBean sivepBean = new SivepCsvBean();
@@ -40,10 +40,10 @@ public class WriteSivepCsvBean {
 		sivepBean.setId(3428620L);
 		sivepBean.setIdade(null);
 		
-		List<CsvBean> sivepBeanList = new ArrayList<>();
-		sivepBeanList.add(sivepBean);
+		List<CsvBean> sivepList = new ArrayList<>();
+		sivepList.add(sivepBean);
 		
-		writeCsv(sivepBeanList);
+		writeCsv(sivepList);
 	}
 	
 	private static void writeCsv(List<CsvBean> csvList) throws Exception {
