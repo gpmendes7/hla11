@@ -44,7 +44,7 @@ public class FillEtniaRedomeSivep {
 	}
 	
 	private static void writeCsv(List<CsvBean> csvList) throws Exception {
-	    Path path = Paths.get(CsvConstants.SIVEP_WITH_ETNIA_SIVEP_REDOME);
+	    Path path = Paths.get(CsvConstants.SIVEP_WITH_ETNIA_SIVEP_REDOME_FILLED);
 	    CsvBeanHandler.writeCsv(path, csvList, SivepCsvBean.class);    
 	}
 	
