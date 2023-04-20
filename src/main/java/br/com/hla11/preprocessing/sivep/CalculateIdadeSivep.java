@@ -41,7 +41,7 @@ public class CalculateIdadeSivep {
 	}
 	
 	private static List<CsvBean> readCsv() throws Exception {
-		Path path = Paths.get(CsvConstants.SIVEP_WITH_ETNIA_SIVEP_NORMALIZED);
+		Path path = Paths.get(CsvConstants.SIVEP_WITH_ETNIA_SIVEP_REDOME_FILLED);
 		return CsvBeanHandler.readCsv(path, SivepCsvBean.class);
 	}
 	
