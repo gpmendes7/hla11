@@ -1,0 +1,118 @@
+**** Conversão de Datas ****
+Segui os links:
+https://www.tutorialspoint.com/java/java_date_time.htm
+https://www.javatpoint.com/java-string-format
+
+**** OpenCsv ****
+Segui os links:
+https://www.baeldung.com/opencsv
+https://github.com/eugenp/tutorials/tree/master/libraries-data-io
+https://www.javainterviewpoint.com/csvtobean-and-beantocsv-example-using-opencsv/
+https://dev.to/franzwong/writing-csv-file-with-opencsv-without-capitalized-headers-and-follows-declaration-order-207e
+(colocar métodos getters e setters para a classe RowCsv e copiar todo o codigo
+da classe Application inclusive a parte de leitura pois é necessário para carregar o strategy
+com o cabeçalho a ser considerado na escrita do csv)
+
+**** Remoção de espaços em branco ****
+Segui os links:
+https://www.baeldung.com/java-string-remove-whitespace
+
+**** Diferença entre datas ****
+https://www.baeldung.com/java-date-difference
+
+**** Comparar datas ****
+https://stackoverflow.com/questions/2592501/how-to-compare-dates-in-java
+
+**** Testes com JUnit 5 ****
+Segui os links:
+https://www.baeldung.com/junit-5
+
+**** Pré-processamento SIVEP ****
+
+Remover Campos
+. Nome_Redome
+. CPF
+. Sexo (manter Sexo_redome do redome)
+. DtNasc (manter DtNasc_redome do redome)
+. DifDtNasc
+. NOME_MAE_Redome 
+. DifNomeMae
+. MUNICIPIO_IBGE_redome
+. DifMunicipio
+. Classificação final do caso (com valor 5 - COVID-19)
+. Classificação final do caso - outro agente etiológico
+
+Renomear campos e colocá-los em formato CamelCase:
+ . Identificação > identificacao
+ . Nome > nome
+ . Sexo_redome > sexoRedome 
+ . DtNasc_redome > dtNascRedome
+ . Raça/cor > etniaSivep
+ . Raça/cor+redome > etniaRedome
+ . Nome da mãe > nomeMae
+ . Município de residência > municipio
+ . Código do município de residência > codigoMunicipio
+ . Data da notificação > dataNotificacao
+ . Semana epidemiológica da notificação > semanaEpidemiologicaNotificacao
+ . Data dos primeiros sintomas > dataPrimeirosSintomas
+ . Semana epidemiológica dos primeiros sintomas > semanaEpidemiologicaPrimeirosSintomas
+ . Evolução do caso > evolucaoCaso
+ . ID > id
+
+Colocar datas com formato dd/MM/YYYY
+
+Ao final, produz arquivo arquivo sivep.csv 
+
+Testar leitura do arquivo sivep.csv
+ Rodar ReadSivep.java 
+
+Testar escrita de um arquivo 
+ Rodar WriteSivep.java 
+ Produz arquivo de amostra sivep(example).csv
+
+Normalizar strings, removendo espaços em branco e caracteres especiais
+ Rodar NormalizeStringsSivep.java
+ Produz arquivo sivep(stringsnormalized).csv
+
+Normalizar etniaSivep transformando os valores:
+ . 1 - BRANCA > BRANCA
+ . 2 - PRETA > PRETA
+ . 3 - AMARELA > AMARELA
+ . 4 - PARDA > PARDA
+ . 9 - IGNORADO > IGNORADO
+ 
+Rodar NormalizeEtniaSivep.java
+ Produz arquivo sivep(etniasivepnormalized).csv
+
+Acrescentar e preencher campo etniaSivepRedome :
+Por padrão, usar valor de etniaRedome. 
+Se etniaRedome for "NAO INFORMADO" e se etniaSivep não estiver em branco
+ou não for "IGNORADO", fixar valor de etniaRedome como etniaSivep
+
+Rodar FillEtniaRedomeSivep.java
+ Produz arquivo sivep(etniasivepredome).csv
+
+Calcular idade 
+ idade vai ser diferença em anos entre as datas: dataNotificação e dataNascimento
+ Rodar CalculateAge.java
+ Produz arquivo sivep(idade).csv
+
+Atualizar evolucaoCaso
+   Rodar UpdateEvolucaoCaso.java
+   Registros com evolucaoCaso "NAO INFORMADO": 361
+   Produz arquivo sivep(evolucaocaso).csv
+
+Calcular percentis obtendo os valores de idade mínima
+e idade máxima
+seguintes valores:
+   idade mínima: 19
+   idade máxima: 74
+   percentil 33: 43
+   percentil 66: 53
+
+Usar percentis para definir as faixas etárias: 
+ Faixa 1: idade mínima até percentil 33 (inclusive) > 19-43
+ Faixa 2: idade com valor sucessor ao percentil 33 até percentil 66 (inclusive) > 44-53
+ Faixa 3: idade com valor sucessor ao percentil 66 até idade máxima > 54-74
+   
+ 
